@@ -69,12 +69,12 @@ Heap *downHeapify(Heap *heap, int position){
     else{
         int maximOfChild = (leftChild > rightChild)? leftChild:rightChild;
         int auxValue = heap->heapArray[position];
-        if(maximOfChild == leftChild){
+        if(maximOfChild == leftChild && position * 2 + 1 < heap -> size){
             heap -> heapArray[position] = leftChild;
             heap -> heapArray[position * 2 + 1] = auxValue;
             heap = downHeapify(heap, position * 2 + 1);
         }
-        else if(maximOfChild == rightChild){
+        else if(maximOfChild == rightChild && position * 2 + 2 < heap -> size){
             heap -> heapArray[position] = rightChild;
             heap -> heapArray[position * 2 + 2] = auxValue;
             heap = downHeapify(heap, position * 2 + 2);
@@ -83,14 +83,14 @@ Heap *downHeapify(Heap *heap, int position){
     return heap;
 }
 
-Heap *heapsort(Heap *thisHeap){
+Heap *heapsort(Heap *thisHeap, int *sizeOfHeap){
    // int *sortedArray = (int*)malloc(sizeof(int) * thisHeap -> size);
-    int sizeOfHeap = thisHeap -> size;
-    for(int i=sizeOfHeap - 1; i>=0; i--){
+    *sizeOfHeap = thisHeap -> size;
+    for(int i= *sizeOfHeap - 1; i>=0; i--){
         int auxValue = thisHeap -> heapArray[i];
         thisHeap -> heapArray[i] = thisHeap -> heapArray[0];
         thisHeap -> heapArray[0] = auxValue;
-        thisHeap -> size --;
+        (thisHeap -> size)--;
         thisHeap = downHeapify(thisHeap, 0);
     }   
     return thisHeap;

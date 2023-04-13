@@ -5,7 +5,7 @@
 typedef struct Heap{
     int capacity, *heapArray, size;
 }Heap;
-Heap *heapsort(Heap *thisHeap);
+Heap *heapsort(Heap *thisHeap, int *sizeOfHeap);
 Heap *createTheHeap();
 Heap *insertInHeapUtil(Heap *heap);
 Heap *insertInHeap(Heap *heap, int value);
