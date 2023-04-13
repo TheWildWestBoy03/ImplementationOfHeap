@@ -2,8 +2,17 @@
 
 int main(){
     Heap *requestsHeap = malloc(sizeof(Heap));
-    requestsHeap -> size = 0;
-    requestsHeap -> capacity = 250;
     printf("Now we want to insert the values in this heap!\n");
-    insertInHeapUtil(requestsHeap);
+    requestsHeap = createTheHeap();
+    requestsHeap = insertInHeapUtil(requestsHeap);
+    int size = requestsHeap -> size;
+    for(int i=0; i<size; i++){
+        printf("%d ", requestsHeap -> heapArray[i]);
+    }
+    printf("\n");
+    requestsHeap = heapsort(requestsHeap);
+    for(int i=0; i<size; i++){
+        printf("%d ", requestsHeap -> heapArray[i]);
+    }
+    return 0;
 }
